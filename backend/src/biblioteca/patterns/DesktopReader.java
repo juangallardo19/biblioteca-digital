@@ -5,6 +5,6 @@ import biblioteca.models.Book;
 public class DesktopReader implements Reader {
     @Override
     public String read(Book book) {
-        return "Leyendo en escritorio: " + (book != null ? book.getTitle() : "(sin título)");
+        return "Reading on desktop: " + (book != null ? book.getTitle() : "(no title)");
     }
 }

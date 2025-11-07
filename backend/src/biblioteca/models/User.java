@@ -4,7 +4,7 @@ public class User {
     private int id;
     private String name;
     private String email;
-    private String subscriptionType; // "BASIC" o "PREMIUM"
+    private String subscriptionType; // "BASIC" or "PREMIUM"
     private int maxLoans;
 
     public User(int id, String name, String email, String subscriptionType, int maxLoans) {

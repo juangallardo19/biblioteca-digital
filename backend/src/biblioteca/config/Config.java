@@ -1,32 +1,32 @@
 package biblioteca.config;
 
 /**
- * Config - Singleton
+ * Config - Singleton Pattern
  *
- * Este patrón garantiza que exista una única instancia compartida
- * de la clase a lo largo de toda la aplicación.
+ * This pattern ensures that a single shared instance of the class
+ * exists throughout the entire application.
  *
- * Características clave:
- * - Constructor privado: impide crear instancias desde fuera.
- * - Método estático getInstance(): devuelve la única instancia.
- * - Implementación thread-safe con double-checked locking.
+ * Key features:
+ * - Private constructor: prevents creating instances from outside.
+ * - Static getInstance() method: returns the single instance.
+ * - Thread-safe implementation with double-checked locking.
  *
- * Ejemplo de uso:
+ * Usage example:
  *   Config config = Config.getInstance();
  *   System.out.println(config.getLibraryName());
  */
 public class Config {
     private static volatile Config instance;
 
-    // Atributos del Singleton con valores iniciales
-    private String libraryName = "Biblioteca Digital";
+    // Singleton attributes with initial values
+    private String libraryName = "Digital Library";
     private int maxLoans = 3;
     private boolean drmEnabled = true;
 
-    // Constructor privado
+    // Private constructor
     private Config() {}
 
-    // Devuelve la única instancia
+    // Returns the single instance
     public static Config getInstance() {
         if (instance == null) {
             synchronized (Config.class) {
@@ -38,7 +38,7 @@ public class Config {
         return instance;
     }
 
-    // Getters y setters
+    // Getters and setters
     public String getLibraryName() { return libraryName; }
     public void setLibraryName(String libraryName) { this.libraryName = libraryName; }
 
