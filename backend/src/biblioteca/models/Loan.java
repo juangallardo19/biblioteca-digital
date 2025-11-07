@@ -1,5 +1,6 @@
 package biblioteca.models;
 
+import biblioteca.utils.StringUtils;
 import java.time.LocalDate;
 
 public class Loan {
@@ -41,8 +42,8 @@ public class Loan {
     public String toString() {
         return "Loan{" +
                 "id=" + id +
-                ", user=" + (user != null ? user.getName() : "null") +
-                ", book=" + (book != null ? book.getTitle() : "null") +
+                ", user=" + StringUtils.safeGetUserName(user) +
+                ", book=" + StringUtils.safeGetTitle(book) +
                 ", loanDate=" + loanDate +
                 ", returnDate=" + returnDate +
                 ", active=" + active +
