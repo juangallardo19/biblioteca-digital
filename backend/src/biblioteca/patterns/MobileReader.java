@@ -1,10 +1,12 @@
 package biblioteca.patterns;
 
-import biblioteca.models.Book;
-
-public class MobileReader implements Reader {
+/**
+ * MobileReader - Concrete implementation of AbstractReader
+ * Uses Template Method pattern - only needs to define the reading prefix
+ */
+public class MobileReader extends AbstractReader {
     @Override
-    public String read(Book book) {
-        return "Reading on mobile: " + (book != null ? book.getTitle() : "(no title)");
+    protected String getReadingPrefix() {
+        return "Reading on mobile";
     }
 }

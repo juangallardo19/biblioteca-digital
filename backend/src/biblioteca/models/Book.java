@@ -19,6 +19,14 @@ public class Book {
         this.format = format;
     }
 
+    /**
+     * Protected constructor for subclasses to eliminate duplicated initialization code
+     */
+    protected Book(String format) {
+        this.format = format;
+        this.available = true;
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

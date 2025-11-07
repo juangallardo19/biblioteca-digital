@@ -1,10 +1,12 @@
 package biblioteca.patterns;
 
-import biblioteca.models.Book;
-
-public class AudioPlayer implements Reader {
+/**
+ * AudioPlayer - Concrete implementation of AbstractReader
+ * Uses Template Method pattern - only needs to define the reading prefix
+ */
+public class AudioPlayer extends AbstractReader {
     @Override
-    public String read(Book book) {
-        return "Playing audiobook: " + (book != null ? book.getTitle() : "(no title)");
+    protected String getReadingPrefix() {
+        return "Playing audiobook";
     }
 }

@@ -1,10 +1,12 @@
 package biblioteca.patterns;
 
-import biblioteca.models.Book;
-
-public class DesktopReader implements Reader {
+/**
+ * DesktopReader - Concrete implementation of AbstractReader
+ * Uses Template Method pattern - only needs to define the reading prefix
+ */
+public class DesktopReader extends AbstractReader {
     @Override
-    public String read(Book book) {
-        return "Reading on desktop: " + (book != null ? book.getTitle() : "(no title)");
+    protected String getReadingPrefix() {
+        return "Reading on desktop";
     }
 }

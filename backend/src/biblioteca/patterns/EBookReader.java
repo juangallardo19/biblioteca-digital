@@ -1,10 +1,12 @@
 package biblioteca.patterns;
 
-import biblioteca.models.Book;
-
-public class EBookReader implements Reader {
+/**
+ * EBookReader - Concrete implementation of AbstractReader
+ * Uses Template Method pattern - only needs to define the reading prefix
+ */
+public class EBookReader extends AbstractReader {
     @Override
-    public String read(Book book) {
-        return "Reading eBook: " + (book != null ? book.getTitle() : "(no title)");
+    protected String getReadingPrefix() {
+        return "Reading eBook";
     }
 }
