@@ -18,12 +18,12 @@ public class LibraryFacade {
     public void borrowBook(User user, Book book) {
         if (data.isAvailable(book)) {
             Loan loan = data.createLoan(user, book);
-            notif.notify(user, "Libro prestado!");
+            notif.notify(user, "Book borrowed successfully!");
         }
     }
 
     public void returnBook(Loan loan) {
         data.closeLoan(loan);
-        notif.notify(loan.getUser(), "Libro devuelto!");
+        notif.notify(loan.getUser(), "Book returned successfully!");
     }
 }

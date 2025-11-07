@@ -1,6 +1,8 @@
 package biblioteca.patterns;
 
-// [DECORATOR]
+// [DECORATOR PATTERN]
+// Allows adding functionalities dynamically to books
+
 interface BookComponent {
     String getContent();
 }
@@ -8,7 +10,7 @@ interface BookComponent {
 class BasicBook implements BookComponent {
     @Override
     public String getContent() {
-        return "Contenido del libro";
+        return "Book content";
     }
 }
 
@@ -21,6 +23,32 @@ class TranslatorDecorator implements BookComponent {
 
     @Override
     public String getContent() {
-        return "[TRADUCIDO] " + book.getContent();
+        return "[TRANSLATED] " + book.getContent();
+    }
+}
+
+class DictionaryDecorator implements BookComponent {
+    private final BookComponent book;
+
+    public DictionaryDecorator(BookComponent book) {
+        this.book = book;
+    }
+
+    @Override
+    public String getContent() {
+        return "[WITH DICTIONARY] " + book.getContent();
+    }
+}
+
+class HighlightDecorator implements BookComponent {
+    private final BookComponent book;
+
+    public HighlightDecorator(BookComponent book) {
+        this.book = book;
+    }
+
+    @Override
+    public String getContent() {
+        return "[HIGHLIGHTED] " + book.getContent();
     }
 }

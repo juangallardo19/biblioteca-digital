@@ -5,6 +5,6 @@ import biblioteca.models.Book;
 public class EBookReader implements Reader {
     @Override
     public String read(Book book) {
-        return "Leyendo eBook: " + (book != null ? book.getTitle() : "(sin título)");
+        return "Reading eBook: " + (book != null ? book.getTitle() : "(no title)");
     }
 }

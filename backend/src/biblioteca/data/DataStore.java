@@ -7,7 +7,9 @@ import biblioteca.models.User;
 import java.time.LocalDate;
 import java.util.*;
 
-// Simulación de BD en memoria
+/**
+ * DataStore - In-memory database simulation (Singleton pattern)
+ */
 public class DataStore {
     private static volatile DataStore instance;
     private final Map<Integer, Book> books = new HashMap<>();
@@ -25,24 +27,25 @@ public class DataStore {
         return instance;
     }
 
-    // Persistencia básica
+    // Basic persistence methods
     public void saveBook(Book book) { books.put(book.getId(), book); }
     public void saveUser(User user) { users.put(user.getId(), user); }
 
     public Book getBook(int id) { return books.get(id); }
     public User getUser(int id) { return users.get(id); }
 
-    // Métodos de compatibilidad con código previo (IDs como String)
+    // Compatibility methods for previous code (String IDs)
     public Book getBook(String id) { return books.get(parse(id)); }
     public User getUser(String id) { return users.get(parse(id)); }
 
     public List<Book> getAllBooks() { return new ArrayList<>(books.values()); }
+    public List<User> getAllUsers() { return new ArrayList<>(users.values()); }
 
     private int parse(String id) {
         try { return Integer.parseInt(id); } catch (Exception e) { return -1; }
     }
 
-    // API requerida por la fachada
+    // API required by the facade
     public boolean isAvailable(Book book) {
         return book != null && book.isAvailable();
     }
@@ -64,19 +67,41 @@ public class DataStore {
         if (b != null) b.setAvailable(true);
     }
 
-    // Compatibilidad con método previo basado en IDs String
+    // Compatibility method for previous code (String IDs)
     public Loan createLoan(String bookId, String userId) {
         Book book = getBook(bookId);
         User user = getUser(userId);
         return createLoan(user, book);
     }
 
-    public List<Loan> getLoansByUser(String userId) {
-        int uid = parse(userId);
+    // Get loans by user ID (int)
+    public List<Loan> getLoansByUserId(int userId) {
         List<Loan> result = new ArrayList<>();
         for (Loan l : loans) {
-            if (l.getUser() != null && l.getUser().getId() == uid) result.add(l);
+            if (l.getUser() != null && l.getUser().getId() == userId) {
+                result.add(l);
+            }
         }
         return result;
+    }
+
+    // Get loans by user ID (String) - for compatibility
+    public List<Loan> getLoansByUser(String userId) {
+        return getLoansByUserId(parse(userId));
+    }
+
+    // Get loan by ID
+    public Loan getLoanById(int loanId) {
+        for (Loan l : loans) {
+            if (l.getId() == loanId) {
+                return l;
+            }
+        }
+        return null;
+    }
+
+    // Get all loans
+    public List<Loan> getAllLoans() {
+        return new ArrayList<>(loans);
     }
 }
